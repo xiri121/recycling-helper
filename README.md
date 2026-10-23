@@ -10,7 +10,9 @@ streamlit run app.py
 ## How to test the core path
 We have provided a test script to verify both standard classification and safety boundaries.
 Run the test:
+```bash
 python test.py
+```
 Expected output: You should see a summary of 8/8 tests passed, demonstrating:
 1. Normal classification (glass bottle).
 2. Hazardous item refusal (battery).
