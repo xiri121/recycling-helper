@@ -1,7 +1,7 @@
 keywords,advice
-waste|trash|garbage|junk|stuff,The item name is too broad to identify the object, and the helper will not guess its category. Enter the exact item name or product type, or check your local official waste-sorting guidance.
-packaging,The word "packaging" does not identify its material, residue, or sorting category. Specify the packaging material and the item it came with, or check your local official guidance.
-plastic item|plastic,Plastic items can differ by material and contamination, so this name is not specific enough. Enter the exact item name or check your local official waste-sorting guidance.
-paper item|paper,Paper sorting can depend on cleanliness and coatings, so this name is not specific enough. Enter the exact item name or check your local official waste-sorting guidance.
-coffee cup|takeout container|takeout box|cup,The material or cleanliness of this item is unknown. Is it paper, plastic, or glass? Is it clean or soiled with food? Please specify the material and condition, or check local guidance.
-unidentified plastic,The type of plastic and its condition are unknown. Please specify the exact item or check local official guidance.
+"waste|trash|garbage|junk|stuff","The item name is too broad to identify the object, and the helper will not guess its category. Enter the exact item name or product type, or check your local official waste-sorting guidance."
+"packaging","The word ""packaging"" does not identify its material, residue, or sorting category. Specify the packaging material and the item it came with, or check your local official guidance."
+"plastic item|plastic","Plastic items can differ by material and contamination, so this name is not specific enough. Enter the exact item name or check your local official waste-sorting guidance."
+"paper item|paper","Paper sorting can depend on cleanliness and coatings, so this name is not specific enough. Enter the exact item name or check your local official waste-sorting guidance."
+"coffee cup|takeout container|takeout box|cup","The material or cleanliness of this item is unknown. Is it paper, plastic, or glass? Is it clean or soiled with food? Please specify the material and condition, or check local guidance."
+"unidentified plastic","The type of plastic and its condition are unknown. Please specify the exact item or check local official guidance."
