@@ -4,6 +4,7 @@ from engine import classify
 st.set_page_config(page_title="Recycling Helper", page_icon="♻️", layout="centered")
 
 st.title("♻️ Recycling Helper")
+st.caption("Rule Version: v1.0 (Last updated: 2026-10-24) | Always defer to local building management notices.")
 st.caption("Enter an item to see guidance from the current dataset.")
 
 st.info(
@@ -26,7 +27,7 @@ if submitted:
         st.error(result.advice)
     elif result.status == "clarify":
         st.warning(result.advice)
-    else:
+    else: # unknown
         st.warning(result.advice)
 
 with st.expander("Data and guidance"):
