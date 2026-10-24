@@ -5,3 +5,5 @@ keywords,advice
 "paper item|paper","Paper sorting can depend on cleanliness and coatings, so this name is not specific enough. Enter the exact item name or check your local official waste-sorting guidance."
 "coffee cup|takeout container|takeout box|cup","The material or cleanliness of this item is unknown. Is it paper, plastic, or glass? Is it clean or soiled with food? Please specify the material and condition, or check local guidance."
 "unidentified plastic","The type of plastic and its condition are unknown. Please specify the exact item or check local official guidance."
+paint|painting|paint can|leftover paint,"Paint can mean leftover paint (hazardous) or a dry painted object. Please specify whether it is wet leftover paint in a tin or a dry painted item, or check local official guidance."
+gas|fuel,"Gas or fuel alone does not identify the item. Specify whether it is an LPG cylinder, a petrol container, or a gas appliance, or check local official guidance."
