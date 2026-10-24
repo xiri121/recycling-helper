@@ -29,9 +29,26 @@ def normalize(value: str) -> str:
     return re.sub(r"[\s\u3000，。！？、,.!?;；:：()（）\[\]【】'\"“”‘’_-]+", "", value)
 
 
-def _read_csv(filename: str) -> list[dict[str, str]]:
+def _variants(key: str) -> tuple[str, ...]:
+    """Plural fallbacks only (batteries -> battery, boxes -> box).
+
+    A fixed suffix strip, not fuzzy matching: no edit distance, no guessing.
+    """
+    variants = [key]
+    if key.endswith("ies") and len(key) > 4:
+        variants.append(key[:-3] + "y")
+    if key.endswith("es") and len(key) > 3:
+        variants.append(key[:-2])
+    if key.endswith("s") and len(key) > 3:
+        variants.append(key[:-1])
+    return tuple(dict.fromkeys(variants))
+
+
+@lru_cache(maxsize=None)
+def _read_csv(filename: str) -> tuple[dict[str, str], ...]:
     with (DATA_DIR / filename).open("r", encoding="utf-8-sig", newline="") as file:
-        return list(csv.DictReader(file))
+        return tuple(csv.DictReader(file))
+
 
 
 def _aliases(value: str) -> list[str]:
@@ -45,17 +62,22 @@ def classify(query: str) -> Result:
     if not key:
         return Result("clarify", query, None, "Please enter a specific item name.")
 
+    variants = _variants(key)
+
     for row in _read_csv("data_refuse.csv"):
-        if any(alias in key for alias in _aliases(row.get("keywords", ""))):
+        aliases = _aliases(row.get("keywords", ""))
+        if any(alias in variant for alias in aliases for variant in variants):
             return Result("refuse", query, None, row.get("advice", "") or DANGER_ADVICE)
 
     for row in _read_csv("data_clarify.csv"):
-        if key in _aliases(row.get("keywords", "")):
+        aliases = _aliases(row.get("keywords", ""))
+        if any(variant in aliases for variant in variants):
             return Result("clarify", query, None, row.get("advice", "") or CLARIFY_ADVICE)
 
     for row in _read_csv("data_rules.csv"):
         aliases = _aliases(row.get("aliases", ""))
-        if key in aliases:
+        if any(variant in aliases for variant in variants):
             return Result("classified", row.get("item", query), row.get("category", ""), row.get("advice", ""))
 
     return Result("unknown", query, None, LOOKUP_ADVICE)
+
