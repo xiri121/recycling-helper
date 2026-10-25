@@ -57,5 +57,5 @@ def main() -> int:
     return 0 if passed == total else 1
 
 
-if __name__ == "__&#8203;main__":
+if __name__ == "__main__":
     raise SystemExit(main())

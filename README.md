@@ -13,7 +13,7 @@ Run the test:
 ```bash
 python test.py
 ```
-Expected output: You should see a summary of 8/8 tests passed, demonstrating:
+Expected output: You should see a summary of 14/14 tests passed, demonstrating:
 1. Normal classification (glass bottle).
 2. Hazardous item refusal (battery).
 3. Ambiguous item clarification (coffee cup).
