@@ -1,3 +1,4 @@
+test_articles_and_spelling_provenance (__main__.ClassifierTests.test_articles_and_spelling_provenance) ... ok
 test_csv_edits_reload_without_restart (__main__.ClassifierTests.test_csv_edits_reload_without_restart) ... ok
 test_every_approved_alias_and_source (__main__.ClassifierTests.test_every_approved_alias_and_source) ... ok
 test_keywords_and_typos_need_confirmation (__main__.ClassifierTests.test_keywords_and_typos_need_confirmation) ... ok
@@ -5,12 +6,13 @@ test_malformed_csv_is_rejected (__main__.ClassifierTests.test_malformed_csv_is_r
 test_no_substring_or_unknown_object_classification (__main__.ClassifierTests.test_no_substring_or_unknown_object_classification) ... ok
 test_queries (__main__.ClassifierTests.test_queries) ... ok
 test_refusal_and_clarification_tables (__main__.ClassifierTests.test_refusal_and_clarification_tables) ... ok
-test_sentence_suggestion_confirmation_and_refusal (__main__.InterfaceTests.test_sentence_suggestion_confirmation_and_refusal) ... 2026-11-16 17:46:03.581 WARNING streamlit.runtime.scriptrunner_utils.script_run_context: Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+test_upstream_evaluation_inputs (__main__.ClassifierTests.test_upstream_evaluation_inputs) ... ok
+test_sentence_suggestion_confirmation_and_refusal (__main__.InterfaceTests.test_sentence_suggestion_confirmation_and_refusal) ... 2026-11-16 18:07:31.215 WARNING streamlit.runtime.scriptrunner_utils.script_run_context: Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
 ok
 
 ----------------------------------------------------------------------
-Ran 8 tests in 12.773s
+Ran 10 tests in 6.709s
+Dataset: 2.0; reviewed: 2026-11-16
+Checking 56 query cases, 35 upstream inputs, all dataset aliases, file reloads, and the Streamlit interface.
 
 OK
-Dataset: 2.0; reviewed: 2026-11-16
-Checking 56 query cases, all dataset aliases, file reloads, and the Streamlit interface.

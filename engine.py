@@ -39,6 +39,9 @@ class Result:
     matched_alias: str = ""
     match_type: str = ""
     source_url: str = ""
+    # Preserve the incoming revision's public provenance field. Suggestions
+    # describe a possible match; they do not silently correct and classify it.
+    matched_via: str | None = None
 
 
 def normalize(value: str) -> str:
@@ -196,8 +199,10 @@ def classify(query: str) -> Result:
     ambiguous = [m for m in mentions if m[2] >= len(rules)]
     if ambiguous:
         row = combined[ambiguous[0][2]]
+        candidates = _candidates(key, rules)
         return Result("clarify", query, None, row["advice"],
-                      candidates=_candidates(key, rules), match_type="ambiguous", source_url=_source_url(row))
+                      candidates=candidates, match_type="ambiguous", source_url=_source_url(row),
+                      matched_via=f'candidate suggestions for "{query}"' if candidates else None)
 
     indices = {m[2] for m in mentions}
     if len(indices) > 1:
@@ -223,5 +228,6 @@ def classify(query: str) -> Result:
     if candidates:
         return Result("clarify", query, None,
                       "Possible dataset matches are shown below. Confirm the exact item before receiving advice. "
-                      "If none matches, consult the official guide.", candidates=candidates, match_type="suggestion")
+                      "If none matches, consult the official guide.", candidates=candidates, match_type="suggestion",
+                      matched_via=f'candidate suggestions for "{query}"')
     return Result("unknown", query, None, LOOKUP_ADVICE)

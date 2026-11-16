@@ -71,7 +71,66 @@ CASES = [
 ]
 
 
+# Preserve all 35 incoming evaluation inputs from commit 8dfa3a9. Four old
+# expectations changed with the expanded dataset: plastic toy and umbrella
+# are listed, articles work, and masks require contamination clarification.
+UPSTREAM_CASES = [
+    ("glass bottle", "classified", "recyclable"),
+    ("newspaper", "classified", "recyclable"),
+    ("wine bottle", "classified", "recyclable"),
+    ("aluminum can", "classified", "recyclable"),
+    ("old clothes", "classified", "recyclable"),
+    ("fruit peel", "classified", "food waste"),
+    ("used tissues", "classified", "general waste"),
+    ("cardboard box", "classified", "recyclable"),
+    ("ceramic bowl", "classified", "general waste"),
+    ("disposable face mask", "clarify", None),
+    ("battery", "refuse", None),
+    ("fluorescent tube", "refuse", None),
+    ("expired medicine", "refuse", None),
+    ("pesticide", "refuse", None),
+    ("aerosol can", "refuse", None),
+    ("batteries", "refuse", None),
+    ("used batteries", "refuse", None),
+    ("coffee cup", "clarify", None),
+    ("takeout container", "clarify", None),
+    ("plastic", "clarify", None),
+    ("waste", "clarify", None),
+    ("packaging", "clarify", None),
+    ("unidentified plastic", "clarify", None),
+    ("painting", "clarify", None),
+    ("coffee cups", "clarify", None),
+    ("plastic toy", "classified", "recyclable"),
+    ("", "clarify", None),
+    ("alien spaceship", "unknown", None),
+    ("broken umbrella", "classified", "general waste"),
+    ("random stuff here", "unknown", None),
+    ("  glass   bottle!!!  ", "classified", "recyclable"),
+    ("BATTERY", "refuse", None),
+    ("a glass bottle", "classified", "recyclable"),
+    ("\u73bb\u7483\u74f6", "unknown", None),
+    ("papers", "clarify", None),
+]
+
+
 class ClassifierTests(unittest.TestCase):
+    def test_upstream_evaluation_inputs(self):
+        for query, status, category in UPSTREAM_CASES:
+            with self.subTest(query=query):
+                result = classify(query)
+                self.assertEqual((result.status, result.category), (status, category))
+
+    def test_articles_and_spelling_provenance(self):
+        for query in ("a glass bottle", "an umbrella", "the newspaper"):
+            with self.subTest(query=query):
+                self.assertEqual(classify(query).status, "classified")
+        result = classify("newspapr")
+        self.assertEqual(result.status, "clarify")
+        self.assertIn("Newspaper", result.candidates)
+        self.assertIn("newspapr", result.matched_via)
+        self.assertIsNone(result.category)
+        self.assertEqual(classify("batery").status, "refuse")
+
     def test_queries(self):
         for query, status, category in CASES:
             with self.subTest(query=query):
@@ -173,7 +232,7 @@ class InterfaceTests(unittest.TestCase):
 
 def main() -> int:
     print(f"Dataset: {engine.get_sources()['dataset_version']}; reviewed: {engine.get_sources()['reviewed_on']}")
-    print(f"Checking {len(CASES)} query cases, all dataset aliases, file reloads, and the Streamlit interface.")
+    print(f"Checking {len(CASES)} query cases, {len(UPSTREAM_CASES)} upstream inputs, all dataset aliases, file reloads, and the Streamlit interface.")
     suite = unittest.defaultTestLoader.loadTestsFromModule(__import__(__name__))
     result = unittest.TextTestRunner(verbosity=2).run(suite)
     return 0 if result.wasSuccessful() else 1

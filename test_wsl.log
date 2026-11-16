@@ -1,0 +1,14 @@
+test_articles_and_spelling_provenance (test.ClassifierTests.test_articles_and_spelling_provenance) ... ok
+test_csv_edits_reload_without_restart (test.ClassifierTests.test_csv_edits_reload_without_restart) ... ok
+test_every_approved_alias_and_source (test.ClassifierTests.test_every_approved_alias_and_source) ... ok
+test_keywords_and_typos_need_confirmation (test.ClassifierTests.test_keywords_and_typos_need_confirmation) ... ok
+test_malformed_csv_is_rejected (test.ClassifierTests.test_malformed_csv_is_rejected) ... ok
+test_no_substring_or_unknown_object_classification (test.ClassifierTests.test_no_substring_or_unknown_object_classification) ... ok
+test_queries (test.ClassifierTests.test_queries) ... ok
+test_refusal_and_clarification_tables (test.ClassifierTests.test_refusal_and_clarification_tables) ... ok
+test_upstream_evaluation_inputs (test.ClassifierTests.test_upstream_evaluation_inputs) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 6.192s
+
+OK
