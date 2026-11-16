@@ -1,0 +1,17 @@
+{
+  "region": "Shanghai, China",
+  "dataset_version": "2.0",
+  "reviewed_on": "2026-11-16",
+  "sources": {
+    "SH2024": {
+      "title": "Shanghai Household Waste Sorting Guidelines (2024 edition)",
+      "publisher": "Shanghai Landscaping and City Appearance Administrative Bureau",
+      "document_number": "2024 No. 278",
+      "published_on": "2024-08-02",
+      "effective_from": "2024-08-01",
+      "url": "https://lhsr.sh.gov.cn/srgl/20240806/40b9feaa-53db-472f-8a6b-2c3cf0465def.html",
+      "sections": "2.1 (district schemes), 2.4 (common items), 5 (disposal requirements)",
+      "note": "English item names and summaries are app translations, not an official English edition. This curated subset is not the complete official catalog."
+    }
+  }
+}
